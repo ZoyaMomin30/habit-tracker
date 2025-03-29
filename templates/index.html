@@ -14,7 +14,6 @@
     </div>
 
 
-
     <div class="container">
         <div class="left">
 
@@ -41,45 +40,64 @@
                 <p class="author">- {{ author }}</p>
             </div>
 
-
-
-
-             <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#habitModal">
-        Create Habit
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="habitModal" tabindex="-1" aria-labelledby="habitModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="habitModalLabel">New Habit</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="habitForm">
-                        <div class="mb-3">
-                            <label for="habitName" class="form-label">Name of Habit</label>
-                            <input type="text" class="form-control" id="habitName" placeholder="exercise/meditation/reading" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="quantity" class="form-label">Quantity</label>
-                            <input type="text" class="form-control" id="quantity" placeholder="hours/kms/miles"  required>
-                        </div>
-                        <button type="submit" class="btn btn-dark">Save Habit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-            <!-- <iframe src="https://pixe.la/v1/users/zoyamomin/graphs/graph2" id="graph"
+            <iframe src="https://pixe.la/v1/users/zoyamomin/graphs/graph2"graph"
             width="800" height="300" frameborder="0" scrolling="no" margin-top="1em">
-            </iframe> -->
-            
+            </iframe>
 
+            <div class="modification-buttons">
+
+                <button type="button" class="btn btn-dark" class="drawer-trigger" id="openDrawer"> Add Pixel</button>
+
+                <div class="drawer-overlay" id="drawerOverlay"></div>
+
+        <form action="/submit" method="POST">
+            <div class="drawer" id="drawer">
+                <div class="drawer-header">
+                    <h2 class="drawer-title">Coding Hours</h2>
+                    <p class="drawer-description">Set your daily activity goal.</p>
+                </div>
+                <div class="drawer-content">
+                    <div class="goal-container">
+                        <button class="goal-button" id="decrease">-</button>
+                        <div class="goal-display">
+                            <input type="hidden" id="goal-value" name="quantity" value="12">
+                            <div class="goal-value" id="goal-text">12</div>
+                            <div class="goal-text">Hours/day</div>
+                        </div>
+                        <button class="goal-button" id="increase">+</button>
+                    </div>
+
+                    <div class="chart-container">
+                        <div class="bar-chart">
+                            <div class="bar" style="height: 80%; "></div>
+                            <div class="bar" style="height: 60%; "></div>
+                            <div class="bar" style="height: 60%; "></div>
+                            <div class="bar" style="height: 40%; "></div>
+                            <div class="bar" style="height: 50%; "></div>
+                            <div class="bar" style="height: 30%; "></div>
+                            <div class="bar" style="height: 45%; "></div>
+                            <div class="bar" style="height: 80%; "></div>
+                            <div class="bar" style="height: 60%; "></div>
+                            <div class="bar" style="height: 60%; "></div>
+                            <div class="bar" style="height: 40%; "></div>
+                            <div class="bar" style="height: 50%; "></div>
+                            <div class="bar" style="height: 30%; "></div>
+                            <div class="bar" style="height: 45%; "></div>
+                        </div>
+                    </div>
+                </div>      
+                <div class="drawer-footer">
+                    <button class="cancel-button drawer-close">Cancel</button>
+                    <button class="submit-button" type="submit" >Submit</button>
+                </div>
+
+            </div> 
+    </form>
+
+                <button type="button" class="btn btn-dark"> update Pixel</button>
+                <button type="button" class="btn btn-dark"> delete Pixel</button>
+
+            </div>
         </div>
             
 
@@ -93,12 +111,11 @@
             </iframe>
 
 
+
             <img class="image" src="./../images/image5.png" alt="logo" height="350px" >
             <img class="image" src="./../images/image4.png" alt="logo" height="250px" >
 
-
         </div>
-
 
     </div>
 

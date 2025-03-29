@@ -1,53 +1,54 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const drawer = document.getElementById("drawer");
+    const overlay = document.getElementById("drawerOverlay");
+    const openButton = document.getElementById("openDrawer");
+    const closeButtons = document.querySelectorAll(".drawer-close");
+    const goalValue = document.getElementById("goal-value"); // Displayed value
+    const goalInput = document.getElementById("goal-input"); // Hidden input
+    const increaseButton = document.getElementById("increase");
+    const decreaseButton = document.getElementById("decrease");
 
-const drawer = document.getElementById("drawer");
-const openButton = document.getElementById("openDrawer");
-const closeButton = document.getElementById("closeDrawer");
-const goalValue = document.getElementById("goalValue");
-const increaseButton = document.getElementById("increase");
-const decreaseButton = document.getElementById("decrease");
-let goal = 12;
+    let goal = 12; // Initial value
 
-openButton.addEventListener("click", () => {
-    drawer.classList.add("open");
-});
-
-closeButton.addEventListener("click", () => {
-    drawer.classList.remove("open");
-});
-
-function updateButtons() {
-    decreaseButton.disabled = goal <= 0;
-    increaseButton.disabled = goal >= 24;
-}
-
-increaseButton.addEventListener("click", () => {
-    if (goal < 24) {
-        goal++;
-        goalValue.textContent = goal;
-        updateButtons();
+    // Function to update button states
+    function updateButtons() {
+        decreaseButton.disabled = goal <= 0;
+        increaseButton.disabled = goal >= 24;
     }
-});
 
-decreaseButton.addEventListener("click", () => {
-    if (goal > 0) {
-        goal--;
-        goalValue.textContent = goal;
-        updateButtons();
-    }
-});
+    // Open Drawer
+    openButton.addEventListener("click", () => {
+        drawer.classList.add("open");
+        overlay.classList.add("show");
+    });
 
-updateButtons();
+    // Close Drawer (for all close buttons)
+    closeButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            drawer.classList.remove("open");
+            overlay.classList.remove("show");
+        });
+    });
 
-// MODAL
-document.getElementById("habitForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevents page reload
-    let habitName = document.getElementById("habitName").value;
-    let graphName = document.getElementById("graphName").value;
-    let quantity = document.getElementById("quantity").value;
-    
-    console.log("Habit Created:", { habitName, graphName, quantity });
-    
-    // Close modal
-    var habitModal = new bootstrap.Modal(document.getElementById('habitModal'));
-    habitModal.hide();
+    // Increase Goal
+    increaseButton.addEventListener("click", () => {
+        if (goal < 24) {
+            goal++;
+            goalValue.textContent = goal; // Update display
+            goalInput.value = goal; // Update hidden input
+            updateButtons();
+        }
+    });
+
+    // Decrease Goal
+    decreaseButton.addEventListener("click", () => {
+        if (goal > 0) {
+            goal--;
+            goalValue.textContent = goal; // Update display
+            goalInput.value = goal; // Update hidden input
+            updateButtons();
+        }
+    });
+
+    updateButtons(); // Initialize button states
 });

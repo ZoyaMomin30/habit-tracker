@@ -17,6 +17,14 @@ def index():
 
 # STEP1 CREATE ACCOUNT 
 
+# @app.route("/create_account", methods=["POST"])
+# def create_account():
+#     if request.method == "POST":
+#         username = request.form["username"]
+#         token = request.form["token"]
+#         pixela_endpoint = request.form["pixela_endpoint"]
+
+
 
 user_params = {
     "token": token,
@@ -33,6 +41,7 @@ graph_id = "graph2"
 graph_endpoint = f"{pixela_endpoint}/{username}/graphs"
 
 
+    
 @app.route("/submit", methods=["POST"])
 def submit():
     if request.method=="POST":

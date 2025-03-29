@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawer with Goal Setting</title>
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+
+    <button class="drawer-trigger" id="openDrawer">Open Drawer</button>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <div class="drawer" id="drawer">
+        <div class="drawer-header">
+            <h2 class="drawer-title">Move Goal</h2>
+            <p class="drawer-description">Set your daily activity goal.</p>
+        </div>
+        <div class="drawer-content">
+            <div class="goal-container">
+                <button class="goal-button" id="decrease">-</button>
+                <div class="goal-display">
+                    <div class="goal-value" id="goal-value">12</div>
+                    <div class="goal-text">Hours/day</div>
+                </div>
+                <button class="goal-button" id="increase">+</button>
+            </div>
+
+            <div class="chart-container">
+                <div class="bar-chart">
+                    <div class="bar" style="height: 80%; "></div>
+                    <div class="bar" style="height: 60%; "></div>
+                    <div class="bar" style="height: 60%; "></div>
+                    <div class="bar" style="height: 40%; "></div>
+                    <div class="bar" style="height: 50%; "></div>
+                    <div class="bar" style="height: 30%; "></div>
+                    <div class="bar" style="height: 45%; "></div>
+                    <div class="bar" style="height: 80%; "></div>
+                    <div class="bar" style="height: 60%; "></div>
+                    <div class="bar" style="height: 60%; "></div>
+                    <div class="bar" style="height: 40%; "></div>
+                    <div class="bar" style="height: 50%; "></div>
+                    <div class="bar" style="height: 30%; "></div>
+                    <div class="bar" style="height: 45%; "></div>
+                </div>
+            </div>
+        </div>      
+        <div class="drawer-footer">
+            <button class="cancel-button drawer-close">Cancel</button>
+            <button class="submit-button">Submit</button>
+        </div>
+    </div> 
+
+    <script src="test.js"></script>
+</body>
+</html>
