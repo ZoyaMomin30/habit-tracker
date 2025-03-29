@@ -1,0 +1,208 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    /* background-color: #f4f4f4; */
+}
+
+#header_image{
+    width:100%;
+    height:270px;
+}
+
+.container{
+    display:flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 1em;
+}
+
+.center{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:flex-start;
+
+} 
+
+.left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-start;
+    margin-left: 55px;
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content:flex-start;
+}
+
+
+.quote-container{
+    width:70%;
+    border-radius:20% 20%;
+    border: 2px black solid;
+    margin:1em;
+    padding:1em;
+    background-color: #f8f9fa;
+}
+
+.quote-container p {
+    margin: 0;
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+.quote-container .author {
+    margin-top: 1em;
+    font-style: italic;
+    color: #666;
+}
+
+.image{
+    width: 270px;
+    margin: 2px;
+    object-fit: cover;
+}
+
+
+.drawer-trigger {
+    margin: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.drawer {
+    position: fixed;
+    bottom: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.2);
+    transition: bottom 0.3s ease-in-out;
+}
+
+.drawer-header {
+    text-align: center;
+}
+
+.drawer-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.drawer-description {
+    font-size: 14px;
+    color: gray;
+}
+
+.goal-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.goal-button {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    border: none;
+    background-color: #ddd;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.goal-display {
+    margin: 0 15px;
+    text-align: center;
+}
+
+.goal-value {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.goal-text {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: gray;
+}
+
+.chart-container {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bar-chart {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+    align-items: flex-end;
+}
+
+.bar {
+    width: 15px;
+    background-color: #333;
+    border-radius: 3px;
+}
+
+.drawer-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.submit-button, .cancel-button {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.submit-button {
+    background-color: #333;
+    color: white;
+}
+
+.cancel-button {
+    background-color: #ddd;
+}
+
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.drawer.open {
+    bottom: 0;
+}
+
+.drawer-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}

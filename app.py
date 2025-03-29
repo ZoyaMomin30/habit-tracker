@@ -5,8 +5,6 @@ import requests
 from datetime import datetime
 from dotenv import load_dotenv
 
-load_dotenv()
-
 token = os.getenv('token')
 username = os.getenv('username')
 pixela_endpoint = os.getenv('pixela_endpoint')
