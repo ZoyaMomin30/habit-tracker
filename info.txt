@@ -1,0 +1,96 @@
+username = zoya1
+token = thisismytoken
+
+from flask import Flask, render_template, request, redirect, url_for, session
+import requests
+from datetime import datetime
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+app = Flask(__name__)
+app.secret_key = os.getenv('SECRET_KEY') or 'dev-secret-key'
+
+# Pixela configuration
+PIXELA_ENDPOINT = os.getenv('PIXELA_ENDPOINT')
+USERNAME = os.getenv('PIXELA_USERNAME')
+TOKEN = os.getenv('PIXELA_TOKEN')
+GRAPH_ID = "graph1"  # You can make this dynamic
+
+@app.route('/')
+def home():
+    # Show form if no habit in session, otherwise show tracking
+    if 'habit' in session:
+        return render_template('index.html', 
+                            habit=session['habit'],
+                            quantity=session['target_quantity'],
+                            graph_id=GRAPH_ID)
+    return render_template('index.html')
+
+@app.route('/add_habit', methods=['POST'])
+def add_habit():
+    habit = request.form['habit']
+    target_quantity = request.form['quantity']
+    
+    # Store in session
+    session['habit'] = habit
+    session['target_quantity'] = target_quantity
+    
+    # Create Pixela graph (if not exists)
+    create_pixela_graph(habit)
+    
+    return redirect(url_for('home'))
+
+def create_pixela_graph(habit_name):
+    """Helper function to create Pixela graph"""
+    graph_endpoint = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs"
+    
+    graph_config = {
+        "id": GRAPH_ID,
+        "name": habit_name,
+        "unit": "hours",
+        "type": "int",
+        "color": "shibafu",  # Green
+        "timezone": "Asia/Kolkata",
+        "isSecret": True,
+        "publishOptionalData": False
+    }
+    
+    headers = {"X-USER-TOKEN": TOKEN}
+    
+    # Check if graph exists first
+    response = requests.post(graph_endpoint, json=graph_config, headers=headers)
+    if response.status_code == 200:
+        print(f"Created new graph for {habit_name}")
+    elif "already exists" in response.text:
+        print("Graph already exists")
+    else:
+        print(f"Error creating graph: {response.text}")
+
+@app.route('/submit', methods=['POST'])
+def submit_pixel():
+    """Handle pixel submission to Pixela"""
+    if 'habit' not in session:
+        return redirect(url_for('home'))
+    
+    quantity = request.form['quantity']
+    today = datetime.now().strftime("%Y%m%d")
+    
+    pixel_endpoint = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{GRAPH_ID}"
+    
+    pixel_data = {
+        "date": today,
+        "quantity": quantity
+    }
+    
+    headers = {"X-USER-TOKEN": TOKEN}
+    response = requests.post(pixel_endpoint, json=pixel_data, headers=headers)
+    
+    if response.status_code == 200:
+        return redirect(url_for('home'))
+    return f"Error: {response.text}", 400
+
+if __name__ == '__main__':
+    app.run(debug=True)

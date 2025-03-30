@@ -52,12 +52,12 @@ headers = {
 post_endpoint = f"{pixela_endpoint}/{username}/graphs/{graph_id}"
 
 
-# today = datetime.now()
+today = datetime.now()
 # if  we want to color pixel of some other day
-today = datetime(year=2025, month=3, day=21)
+# today = datetime(year=2025, month=3, day=21)
 
 # see strftime library
-# today.strftime("%Y%m%d")
+today.strftime("%Y%m%d")
 color_param = {
     "date": today.strftime("%Y%m%d"),
     "quantity": "10",
